@@ -109,7 +109,7 @@ so you can see -sometimes- some little difference between module's output and LC
 2016-2017 Nicola Quiriti ('ovrheat' - 'seven')
 */
 
-#include "decoder.h"
+#include "../common/decoder.h"
 
 static int const wind_dir_degr[]= {0, 23, 45, 68, 90, 113, 135, 158, 180, 203, 225, 248, 270, 293, 315, 338};
 
@@ -139,7 +139,7 @@ static int fineoffset_wh1080_callback(r_device *decoder, bitbuffer_t *bitbuffer,
     if (type == TYPE_FSK) {
         int bit_offset = bitbuffer_search(bitbuffer, 0, 0, fsk_preamble, sizeof(fsk_preamble) * 8) + sizeof(fsk_preamble) * 8;
         if (bit_offset + sizeof(bbuf) * 8 > bitbuffer->bits_per_row[0]) {  // Did not find a big enough package
-            decoder_logf_bitbuffer(decoder, 1, __func__, bitbuffer, "short package. Header index: %u", bit_offset);
+            decoder_logf(decoder, 1, __func__, "short package. Header index: %u", bit_offset);
             return DECODE_ABORT_LENGTH;
         }
         bitbuffer_extract_bytes(bitbuffer, 0, bit_offset-8, bbuf, sizeof(bbuf) * 8);
@@ -266,7 +266,7 @@ static int fineoffset_wh1080_callback(r_device *decoder, bitbuffer_t *bitbuffer,
                 "battery_ok",       "Battery",          DATA_INT,       !battery_low,
                 "temperature_C",    "Temperature",      DATA_FORMAT,    "%.1f C",  DATA_DOUBLE,    temperature,
                 "humidity",         "Humidity",         DATA_FORMAT,    "%u %%",    DATA_INT,       humidity,
-                "wind_dir_deg",     "Wind Direction",   DATA_INT, direction_deg,
+                "wind_dir_deg",     "Wind Direction",   DATA_INT,       direction_deg,
                 "wind_avg_km_h",    "Wind avg speed",   DATA_FORMAT,    "%.2f",    DATA_DOUBLE,    speed,
                 "wind_max_km_h",    "Wind gust",        DATA_FORMAT,    "%.2f",    DATA_DOUBLE,    gust,
                 "rain_mm",          "Total rainfall",   DATA_FORMAT,    "%.1f",    DATA_DOUBLE,    rain,
