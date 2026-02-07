@@ -167,7 +167,7 @@ static int fineoffset_WH24_callback(r_device *decoder, bitbuffer_t *bitbuffer)
         type = MODEL_WH65B;
 
     bitbuffer_extract_bytes(bitbuffer, 0, bit_offset, b, sizeof(b) * 8);
-    decoder_log_bitrow(decoder, 1, __func__, b, sizeof(b) * 8, "Raw @ bit_offset [%u]", bit_offset);
+    decoder_log_bitrow(decoder, 1, __func__, b, sizeof(b) * 8, "Raw @ bit_offset");
 
     if (b[0] != 0x24)
         return DECODE_FAIL_SANITY;
