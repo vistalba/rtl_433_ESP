@@ -11,7 +11,7 @@
     (at your option) any later version.
 */
 
-#include "../common/decoder.h"
+#include "decoder.h"
 
 static int const wind_dir_degr[]= {0, 23, 45, 68, 90, 113, 135, 158, 180, 203, 225, 248, 270, 293, 315, 338};
 
